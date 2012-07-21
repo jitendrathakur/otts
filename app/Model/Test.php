@@ -45,7 +45,7 @@ class Test extends AppModel
      *
      * @var array
      */
-    public $hasMany = array('TestQuestion' => array('dependent' => true));
+    public $hasMany = array('TestQuestion');
 
 
     /**

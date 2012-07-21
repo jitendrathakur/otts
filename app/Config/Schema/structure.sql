@@ -96,28 +96,6 @@ INSERT INTO `boards` (`id`, `name`, `created`, `modified`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `candidates`
---
-
-CREATE TABLE IF NOT EXISTS `candidates` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
-  `experience_months` smallint(6) DEFAULT NULL,
-  `experience_years` smallint(6) DEFAULT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
---
--- Dumping data for table `candidates`
---
-
-INSERT INTO `candidates` (`id`, `name`, `email`, `experience_months`, `experience_years`, `created`, `modified`) VALUES
-(4, 'Amitabh Bachchan', 'amitabh@bachchan.com', 2, 4, '2012-01-03 11:55:28', '2012-01-03 11:55:28'),
-(3, 'Amir Khan', 'amir@khan.com', 3, 5, '2012-01-03 09:38:43', '2012-01-04 16:07:29');
 
 -- --------------------------------------------------------
 

@@ -57,14 +57,21 @@
 						array('action' => 'index')
 					);
 				?></li>
-				<?php foreach ($subjects as $subjectId => $subjectName) : ?>
+				<?php
+                
+				 foreach ($subjects as  $key => $subject) : ?>
+				 <?php echo $key; 
+					foreach($subject as $subjectId => $subjectName) {
+				    ?>
 					<li><?php 
 						echo $this->Html->link(
 							$subjectName,
 							array('action' => 'index', $subjectId)
 						);
 					?></li>
-				<?php endforeach; ?>
+				    <?php
+					}
+					 endforeach; ?>
 			</ul>
 		</div>
 	</div>

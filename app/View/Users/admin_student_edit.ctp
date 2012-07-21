@@ -5,7 +5,7 @@
         echo $this->Form->input('id');
         echo $this->Form->input('username');
         echo $this->Form->input('email');
-        echo $this->Form->input('Subject', array('multiple' => true));
+        echo $this->Form->input('Subject', array('multiple' => true, 'style' => 'width:250px; height:250px;'));
     ?>    
 <?php echo $this->Form->end($twitterBootstrapEndOptions);?>
 </div>

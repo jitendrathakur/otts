@@ -16,7 +16,30 @@ class TutorialsController extends AppController
         }      
 
         $this->set('tutorials', $this->paginate());
-        $this->set('subjects', $this->Tutorial->Subject->find('list'));
+        $subjects = $this->Tutorial->Subject->find(
+            'all',
+            array(
+                //'fields' => array('id', 'name'),
+                'contain' => array(
+                    'Course' => array(
+                        'fields' => array('name'),
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
+                    )
+                ),
+               // 'group' => 'Course.name',                
+            )
+        );       
+        
+        $subjectList = array();
+        foreach ($subjects as $subject){
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
+
+        $subjects = $subjectList;
+        $this->set('subjects', $subjects);
     }//end index()
 
 
@@ -65,19 +88,22 @@ class TutorialsController extends AppController
                 'contain' => array(
                     'Course' => array(
                         'fields' => array('name'),
-                        'Board' => array('fields' => array('name'))
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
                     )
                 ),
-                'group' => 'Course.name',                
+               // 'group' => 'Course.name',                
             )
         );       
+        
         $subjectList = array();
         foreach ($subjects as $subject){
-            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']] = array($subject['Subject']['id'] => $subject['Subject']['name']);
-        }
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
 
-        $subjects = $subjectList;      
-        $this->set(compact('subjects'));
+        $subjects = $subjectList;        $this->set(compact('subjects'));
     }//end add()
 
 
@@ -108,23 +134,27 @@ class TutorialsController extends AppController
             $this->request->data = $this->Tutorial->read(null, $id);            
         }
 
-        $subjects = $this->Tutorial->Subject->find(
+         $subjects = $this->Tutorial->Subject->find(
             'all',
             array(
                 //'fields' => array('id', 'name'),
                 'contain' => array(
                     'Course' => array(
                         'fields' => array('name'),
-                        'Board' => array('fields' => array('name'))
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
                     )
                 ),
-                'group' => 'Course.name',                
+               // 'group' => 'Course.name',                
             )
         );       
+        
         $subjectList = array();
         foreach ($subjects as $subject){
-            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']] = array($subject['Subject']['id'] => $subject['Subject']['name']);
-        }
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
 
         $subjects = $subjectList;
         $this->set(compact('subjects'));

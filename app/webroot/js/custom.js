@@ -21,4 +21,3 @@ $(document).ready(function(){
     timer();
     intervalId = setInterval('timer()', 1000);
 });
-

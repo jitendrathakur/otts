@@ -2,6 +2,20 @@
 class AppController extends Controller
 {
 
+
+   /**
+     * This class variable is used to list helper used by all views.
+     *
+     * @var type
+     */
+    public $helpers = array(
+                       'Html',
+                       'Form',
+                       'Session',
+                       'Js',
+                      );
+
+
 /**
  * This class variable is used to list component classes used by controllers.
  *
@@ -26,7 +40,7 @@ class AppController extends Controller
     'Session'
   );
   
-  protected function getRedirectPath() {
+  public function getRedirectPath() {
     if ($this->Session->read('Auth.User.userGroup') == 'Admin') {
       $this->Auth->loginRedirect = array(
         'controller' => 'boards',
@@ -57,7 +71,7 @@ class AppController extends Controller
       );      
     }
   }//end getRedirectPath()
- /*
+ 
 function isAuthorized()
   {
     
@@ -94,7 +108,7 @@ function isAuthorized()
     return $this->Acl->check($aroAlias, $acoAlias);
   }//end isAuthorized()
 
-   */
+   
    public function getParentGroup($userId = null)
   {
       // Get the member id
@@ -114,7 +128,7 @@ function isAuthorized()
               'parent_group' => $this->Acl->Aro->field('alias', $conditions),
              );
   }
-  /*
+  
     private function allowUser()
   {
     // Build ACO alias
@@ -132,7 +146,7 @@ function isAuthorized()
   public function base_css() {}
   public function javascript() {}
    
-  */
+  
    protected function _sendEmail($options = array())
   {
     // First use email component
@@ -167,19 +181,7 @@ function isAuthorized()
     return $email->send();
   }
    
-   /**
-     * This class variable is used to list helper used by all views.
-     *
-     * @var type
-     */
-    public $helpers = array(
-                       'Html',
-                       'Form',
-                       'Session',
-                       'Js',
-                      );
-
-
+  
     /**
      * This callback method is used to allow access to anonymous users.
      *
@@ -187,9 +189,10 @@ function isAuthorized()
      */
     function beforeFilter()
     {
-		
-		$this->Auth->allow('*');
-        //$this->Auth->allow('login', 'logout', 'take_test', 'view_score', 'question');
+     
+		  $this->allowUser();
+		//$this->Auth->allow('*');
+        //$this->Auth->allow('question');
     }//end beforeFilter()
 
 

@@ -79,11 +79,7 @@
                             array(
                                 'title'   => 'Add',
                                 'url'     => array('controller' => 'tests', 'action' => 'add', 'admin' => true),
-                            ),
-                            array(
-                                'title'   => 'Take Test',
-                                'url'     => array('controller' => 'tests', 'action' => 'take_test', 'admin' => false),
-                            ),
+                            ),                           
                         ),
                     ),
                     array(

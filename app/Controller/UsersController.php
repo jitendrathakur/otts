@@ -10,6 +10,14 @@ class UsersController extends AppController
      */
     public function login()
     {
+
+        if ($this->Auth->user('id')) {         
+          $this->getRedirectPath();
+          $this->redirect($this->Auth->redirect());
+        } else {
+          $this->Session->destroy();
+          $this->Session->delete('Auth');         
+        }
         // User logs in successfully
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
@@ -39,6 +47,7 @@ class UsersController extends AppController
             $this->Session->setFlash(__('Logged out successfully.'), 'success');
         }
         $this->Session->destroy();
+        $this->Session->delete('Auth');
        
         $this->redirect($this->Auth->logoutRedirect);
     }//end logout()
@@ -430,16 +439,20 @@ class UsersController extends AppController
                 'contain' => array(
                     'Course' => array(
                         'fields' => array('name'),
-                        'Board' => array('fields' => array('name'))
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
                     )
                 ),
-                'group' => 'Course.name',                
+               // 'group' => 'Course.name',                
             )
         );       
+        
         $subjectList = array();
         foreach ($subjects as $subject){
-            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']] = array($subject['Subject']['id'] => $subject['Subject']['name']);
-        }
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
 
         $subjects = $subjectList;
         $this->set(compact('subjects'));

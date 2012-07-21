@@ -13,10 +13,33 @@ class QuestionsController extends AppController
         $this->Question->recursive = 0;
         if (!empty($subjectId)) {
             $this->paginate = array('conditions' => array('subject_id' => $subjectId));    
-        }      
+        }
 
+        $subjects = $this->Question->Subject->find(
+            'all',
+            array(
+                //'fields' => array('id', 'name'),
+                'contain' => array(
+                    'Course' => array(
+                        'fields' => array('name'),
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
+                    )
+                ),
+               // 'group' => 'Course.name',                
+            )
+        );       
+        
+        $subjectList = array();
+        foreach ($subjects as $subject){
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+       } 
+
+        $subjects = $subjectList;
         $this->set('questions', $this->paginate());
-        $this->set('subjects', $this->Question->Subject->find('list'));
+        $this->set('subjects', $subjects);
     }//end index()
 
 
@@ -65,18 +88,23 @@ class QuestionsController extends AppController
                 'contain' => array(
                     'Course' => array(
                         'fields' => array('name'),
-                        'Board' => array('fields' => array('name'))
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
                     )
                 ),
-                'group' => 'Course.name',                
+               // 'group' => 'Course.name',                
             )
         );       
+        
         $subjectList = array();
         foreach ($subjects as $subject){
-            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']] = array($subject['Subject']['id'] => $subject['Subject']['name']);
-        }
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+       } 
 
         $subjects = $subjectList;      
+                
         $this->set(compact('subjects'));
     }//end add()
 
@@ -113,7 +141,7 @@ class QuestionsController extends AppController
                     array('question_id' => $this->Question->id)
                 );                
                 if ($this->Question->Image->save($this->request->data)) {
-                    //debug($this->request->data);exit;
+
                     $this->Session->setFlash(
                         __('The question has been saved'),
                         'success'                    
@@ -132,7 +160,29 @@ class QuestionsController extends AppController
             $this->request->data['Question']['answer'] = unserialize($this->request->data['Question']['answer']);
         }
 
-        $subjects    = $this->Question->Subject->find('list');
+        $subjects = $this->Question->Subject->find(
+            'all',
+            array(
+                //'fields' => array('id', 'name'),
+                'contain' => array(
+                    'Course' => array(
+                        'fields' => array('name'),
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
+                    )
+                ),
+               // 'group' => 'Course.name',                
+            )
+        );       
+        
+        $subjectList = array();
+        foreach ($subjects as $subject){
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
+
+        $subjects = $subjectList;
         $images      = $this->Question->Image->find(
             'all', 
             array(
@@ -140,7 +190,7 @@ class QuestionsController extends AppController
              'contain' => false
             )
         );        
-//debug($images);
+
         $question_id = $id;
         $this->set(compact('subjects', 'question_id', 'images'));
     }//end edit()

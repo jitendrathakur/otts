@@ -117,7 +117,7 @@ class TestsController extends AppController
             if ($this->Test->saveAssociated($modifiedRequestData)) {
                 $this->Session->setFlash(
                     __('The test has been saved'),
-                    'default',
+                    'success',
                     array('class' => 'success')
                 );
                 $this->redirect(array('action' => 'index'));
@@ -127,7 +127,29 @@ class TestsController extends AppController
         }
 
         //$candidates = $this->Test->Candidate->find('list');
-        $subjects   = $this->Subject->find('list');
+         $subjects = $this->Question->Subject->find(
+            'all',
+            array(
+                //'fields' => array('id', 'name'),
+                'contain' => array(
+                    'Course' => array(
+                        'fields' => array('name'),
+                        'Board' => array(
+                            'fields' => array('name'),
+                            'order' => 'Board.name',
+                        )
+                    )
+                ),
+               // 'group' => 'Course.name',                
+            )
+        );       
+        
+        $subjectList = array();
+        foreach ($subjects as $subject){
+            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
+        } 
+
+        $subjects = $subjectList;
 
         $this->set(compact('candidates', 'subjects'));
     }//end add()
@@ -551,6 +573,7 @@ class TestsController extends AppController
      */
     public function student_test($id = null)
     {
+        
         $this->Test->id = $id;
 
         // If test does not exists, throws na exception.
@@ -558,10 +581,11 @@ class TestsController extends AppController
             throw new NotFoundException(__('Invalid test'));
         }
 
+        $currentTime = strtotime(date('Y-m-d H:i:s'));
+             
+        $this->set(array("startDate" => $currentTime, "currentDate" => 0));
+
         if ($this->request->is('post')) {
-            //debug($this->request->data);
-            
-            
             if (!empty($this->request->data['btnNext'])
                 && $this->Session->read('Test.current_question') <
                         $this->Session->read('Test.question_count') - 1) {                
@@ -606,6 +630,7 @@ class TestsController extends AppController
                 
             }                           
         } else {
+            setcookie("timing", "", time()-3600);
             $test = $this->Test->find(
                 'first',
                 array(
@@ -615,10 +640,13 @@ class TestsController extends AppController
             $test['question_count'] = count($test['TestQuestion']);
             $test['current_question'] = 0;
             $this->Session->write('Test', $test);
-            
+            $this->Session->write('Test.timeRemaining', date('s') + 3600);
         }
         
         $test            = $this->Session->read('Test');
+     
+
+
         $currentQuestion = $test['TestQuestion'][$test['current_question']]['question_id'];
         unset($test['TestQuestion']);
         $question = $this->Question->read(null, $currentQuestion);
@@ -633,8 +661,10 @@ class TestsController extends AppController
         );
         $result = ClassRegistry::init('tests_users')->find('first', $option);
         
+        
         $this->request->data['Option'] = unserialize($result['tests_users']['answer']);
         //debug($test); 
+
         $this->set(compact('test', 'question'));
     }//end view()
 
@@ -666,6 +696,7 @@ class TestsController extends AppController
      */
     public function student_result($testId = null)
     {   
+        setcookie("timing", "", time()-3600);
         $option = array(
             'conditions' => array(
                 'user_id' => $this->Auth->user('id'),

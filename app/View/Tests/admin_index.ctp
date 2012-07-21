@@ -15,10 +15,8 @@
 		<td><?php echo h($test['Subject']['name']); ?>&nbsp;</td>
 		<td><?php echo !empty($test['Test']['name']) ? $test['Test']['name'] : 'No Name';  ?>&nbsp;</td>
 		<td><?php echo h($test['Test']['code']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $test['Test']['id'], 'admin' => false)); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $test['Test']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $test['Test']['id']), null, __('Are you sure you want to delete # %s?', $test['Test']['id'])); ?>
+		<td class="actions">						
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $test['Test']['id']),  array('class' => 'btn btn-danger btn-mini'), __('Are you sure you want to delete # %s?', $test['Test']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

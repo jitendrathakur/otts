@@ -118,7 +118,20 @@ class SubjectsController extends AppController
         } else {
             $this->request->data = $this->Subject->read(null, $id);
         }
-        $this->set('courses', $this->Subject->Course->find('list'));
+
+        $courses = $this->Subject->Course->find('list', array(
+            'fields' => array('Course.id', 'Course.name', 'Board.name'),
+            "joins" => array(
+                array(
+                    "table" => "boards",
+                    "alias" => "Board",
+                    "type" => "INNER",
+                    "conditions" => array("Board.id = Course.board_id")
+                    )
+                )
+            )
+        );
+        $this->set('courses', $courses);
     }//end edit()
 
 

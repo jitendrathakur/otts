@@ -41,7 +41,7 @@
         )."</span></div>";       
 
         echo $this->Form->input("option_$j", array(
-         'type'  => 'text',
+         //'type'  => 'text',
          'class' => 'input-xlarge',
          'div'     => $divClass,
          'between' => '<div class="controls"><div class="input-append">',
