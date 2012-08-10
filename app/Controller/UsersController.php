@@ -2,6 +2,17 @@
 class UsersController extends AppController
 {
 
+    
+    /**
+     * This callback method is used to allow access to anonymous users.
+     *
+     * @return void
+     */
+    /*function beforeFilter()
+    {    
+     
+      //$this->Auth->allow('admin_approve_student');
+    }//end beforeFilter()*/
 
     /**
      * This action method is used to log user in.
@@ -209,6 +220,7 @@ class UsersController extends AppController
         if(!empty($email)) {
             $this->paginate = array('conditions' => array('User.email' => $email));
         }
+        $this->paginate = array('limit' => 5);
         //$this->User->bindModel(array('hasAndBelongsToMany' => array('Subject')));
         $this->User->recursive = 0;        
         $this->set('users', $this->paginate());
@@ -414,11 +426,13 @@ class UsersController extends AppController
         }        
         
         $data['id'] = $this->request->data['studentId'];
+        
         if ($this->User->save($data)) {
-            return true;
+          $return = true;
         } else {
-            return false;
+          $return = false;
         }
+        return json_encode($return);
     }
 
 

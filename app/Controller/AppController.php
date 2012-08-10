@@ -224,6 +224,17 @@ function isAuthorized()
                 'div'   => array('class' => 'form-actions'),
             )
         );
+        $option = array(
+          'conditions' => array(
+            'image_of' => 'Advertise', 
+            'advertise_id NOT' => null
+          ),
+          'contain' => 'Image',
+          'limit' => 3,
+          'order' => 'RAND()',
+        );
+        $this->loadModel('Advertise');
+        $this->set('advertise', $this->Advertise->find('all', $option));
     }
 
 

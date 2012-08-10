@@ -99,6 +99,19 @@
                             ),
                         ),
                     ),
+                    array(
+                        'title'    => 'Advertise',
+                        'dropdown' => array(
+                            array(
+                                'title'   => 'List',
+                                'url'     => array('controller' => 'advertises', 'action' => 'index', 'admin' => true),
+                            ),
+                            array(
+                                'title'   => 'Add',
+                                'url'     => array('controller' => 'advertises', 'action' => 'add', 'admin' => true),
+                            ),                           
+                        ),
+                    ),
                 );
             $studentMenu = array(
                 array(

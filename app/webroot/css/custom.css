@@ -8,3 +8,10 @@ body {
 	margin-left:20px;
 
 }
+
+.thumbnail {width: 200px; height: 200px;}
+
+.rightBar {
+
+	margin-right:0;
+}

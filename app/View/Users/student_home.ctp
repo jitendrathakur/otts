@@ -8,7 +8,11 @@
 	    <b></div>
      <?php 	} ?>
 </div>
-
+    <?php if (!$user['User']['tnt'] OR !$user['User']['quiz']) :?>
+        <div class="alert alert-info">
+            <p>Please wait while administrator approve your account.</p>
+        </div>
+    <?php endif; ?>
  <div class="form-actions">
     <?php 
     if ($user['User']['tnt']) { 

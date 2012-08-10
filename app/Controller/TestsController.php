@@ -573,7 +573,15 @@ class TestsController extends AppController
      */
     public function student_test($id = null)
     {
-        
+        $option = array(
+            'user_id' => $this->Auth->user('id'),
+            'test_id' => $id            
+        );
+        $resultId = $this->Result->field('id', $option);
+
+        if(!empty($results)) {
+          $this->redirect(array('action' => 'result', $resultId));
+        }
         $this->Test->id = $id;
 
         // If test does not exists, throws na exception.
@@ -586,6 +594,7 @@ class TestsController extends AppController
         $this->set(array("startDate" => $currentTime, "currentDate" => 0));
 
         if ($this->request->is('post')) {
+            
             if (!empty($this->request->data['btnNext'])
                 && $this->Session->read('Test.current_question') <
                         $this->Session->read('Test.question_count') - 1) {                

@@ -5,8 +5,6 @@ array('class' => 'btn btn-info btn-large pull-right')
 <div>
 <?php echo $this->Session->flash('auth'); ?>
 </div>
-username:admin
-password: 123456
 <div class="">
 	<h2>Login</h2>
 	<?php echo $this->Form->create('User', $twitterBootstrapCreateOptions);?>

@@ -32,8 +32,24 @@
       <?php 
           echo $this->Session->flash(); 
           echo $this->Session->flash('auth');
-          echo $content_for_layout;
-      ?>
+          ?>
+          <div class="row">
+            <div class="span9">
+              <?php echo $content_for_layout; ?>
+            </div>
+            <div class="span3">
+                <?php
+//                debug($advertise);
+                foreach ($advertise as $Advertise):
+                ?> <a href="<?php echo $Advertise['Advertise']['link'] ?>"><img class="thumbnail" src="<?php echo $this->webroot.'files/images/'.$Advertise['Image']['filename']; ?>" alt="" />
+              <img src="<?php echo $this->webroot; ?>img/foo.gif" .../ 
+                  <?php //echo $this->Html->image(WWW'/files/images/'.$Advertise['Image']['filename'], '', array('class' => 'thumbnail')); ?>
+                </a><?php
+                
+                endforeach; ?>
+            </div>           
+          </div>
+                    
     </div> <!-- /container -->
 
     <!-- Le javascript

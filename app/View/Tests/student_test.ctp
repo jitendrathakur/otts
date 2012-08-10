@@ -1,7 +1,7 @@
 <?php echo $this->Html->script(array('jquery.countdown')); ?>
 <script type="text/javascript">
 
- function setCookie(c_name,value,exdays)
+    function setCookie(c_name,value,exdays)
     {
         var exdate=new Date();
         exdate.setDate(exdate.getDate() + exdays);
@@ -27,22 +27,22 @@
 
 
 
-function checkCookie()
-{
-var username=getCookie("username");
-if (username!=null && username!="")
-  {
-  alert("Welcome again " + username);
-  }
-else
-  {
-  username=prompt("Please enter your name:","");
-  if (username!=null && username!="")
+    function checkCookie()
     {
-    setCookie("username",username,365);
+    var username=getCookie("username");
+    if (username!=null && username!="")
+      {
+      alert("Welcome again " + username);
+      }
+    else
+      {
+      username=prompt("Please enter your name:","");
+      if (username!=null && username!="")
+        {
+        setCookie("username",username,365);
+        }
+      }
     }
-  }
-}
 
     
     function timer() {
@@ -50,7 +50,7 @@ else
        
         if((typeof getCookie('timing') == "undefined") || (getCookie('timing') == '')) {
             
-            var remaningSeconds = 3559;
+            var remaningSeconds = 3599;
         } else {
             var d = getCookie('timing'); 
             var temp = d.split(":");        
@@ -58,21 +58,23 @@ else
 
             var remaningSeconds = seconds;
         }       //calculating and storing remaining seconds
+        console.log(remaningSeconds);
         $('#timer').countdown({
             
             until: remaningSeconds, compact: true, format: 'M:S',
             onExpiry: function(){
                 console.log($('form#TestUserStudentTestForm'));
-                alert(remaningSeconds);
-                $("#submitName").html("<input type='hidden' value='Submit Test' name='data[submit]' />");
-                testf();
-                $('form#TestUserStudentTestForm').submit();
+               // alert(remaningSeconds);
+                $("#submitName").html("<input id='submitJs' type='submit' value='Submit Test' name='submit' class='hide' />");
+                //testf();
+                $('#submitJs').trigger('click');
          },
         });     //displaying countdown timer
     }
-function testf() {
-    document.getElementById("TestUserStudentTestForm").submit();
-}
+
+    function testf() {
+        document.getElementById("TestUserStudentTestForm").submit();
+    }
 
     $(function(){
 
@@ -94,6 +96,13 @@ function testf() {
 <div id="questionEdit" class="tests view">
     
     <h2><?php  echo __('Test');?></h2>
+    <body onload="timer()">
+                
+        <div align ="right">Time Left</div>
+        <div id="timer" align ="right"></div>
+        
+    </body>
+    
     <p><strong>Question <?php echo $this->Session->read('Test.current_question') + 1;?>: </strong><?php echo __($question['Question']['title']); ?></p>
     <?php foreach ($question['Image'] as $image) {        
         if ($image['image_of'] == 'question') {
@@ -101,13 +110,7 @@ function testf() {
         } 
     } ?>
     <?php echo $this->Form->create('TestUser'); ?>
-    <body onload="timer()">
-                
-        <div align ="right">Time Left</div>
-        <div id="timer" align ="right"></div>
-        <div id="submitName"></div>
-    </body>
-    
+    <div id="submitName"></div>
     <?php for ($i=1; $i <= 4; $i++) { ?>
         <p>
             <?php
@@ -127,7 +130,7 @@ function testf() {
         <?php //echo $this->Form->create(); ?>
         <div class="span4">
             <?php if ($this->Session->read('Test.current_question') > 0): ?>                
-                <input type="submit" value="<< Prev" name="btnPrev" class="btn btn-primary" />
+                <input type="submit" value="<< Prev" name="btnPrev" class="btn btn-primary" /> 
             <?php endif; ?>            
             <?php if ($this->Session->read('Test.current_question') <
                             $this->Session->read('Test.question_count') - 1): ?>
