@@ -459,7 +459,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname` varchar(255) DEFAULT NULL,
   `dob` datetime DEFAULT NULL,
   `address` text,
-  `mobile` int(11) DEFAULT NULL,
+  `mobile` varchar(11) DEFAULT NULL,
   `pincode` int(6) DEFAULT NULL,
   `tnt` tinyint(1) NOT NULL DEFAULT '0',
   `quiz` tinyint(1) NOT NULL DEFAULT '0',

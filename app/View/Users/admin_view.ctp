@@ -26,5 +26,21 @@
 			<?php echo h($user['User']['lastname']); ?>
 			&nbsp;
 		</dd>
+		<dt class="span3"><?php echo __('DOB'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['dob']); ?>
+			&nbsp;
+		</dd>
+		<dt class="span3"><?php echo __('Mobile'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['mobile']); ?>
+			&nbsp;
+		</dd>
+		<dt class="span3"><?php echo __('Pincode'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['pincode']); ?>
+			&nbsp;
+		</dd>
+		
 	</dl>
 </div>

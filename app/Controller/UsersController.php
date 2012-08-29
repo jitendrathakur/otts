@@ -139,8 +139,7 @@ class UsersController extends AppController
           'attachments' => array(),
           'viewVars'    => null,
         );
-
-        //$this->_sendEmail($options);
+                //$this->_sendEmail($options);
 
         $this->request->data['User']['group_id'] = Configure::read('studentGroupId');
         if($this->User->save($this->request->data)) {
@@ -216,11 +215,12 @@ class UsersController extends AppController
                 )
             ),
             
-        ));     
+        ));  
+        $this->paginate = array('limit' => 20);   
         if(!empty($email)) {
-            $this->paginate = array('conditions' => array('User.email' => $email));
+            $this->paginate = array('conditions' => array('User.email LIKE' => "%$email%"));
         }
-        $this->paginate = array('limit' => 5);
+        
         //$this->User->bindModel(array('hasAndBelongsToMany' => array('Subject')));
         $this->User->recursive = 0;        
         $this->set('users', $this->paginate());

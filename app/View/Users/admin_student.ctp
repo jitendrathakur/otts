@@ -33,7 +33,7 @@
 </div>
 
 <script type="text/javascript">
-$(function() {
+$(function() {    
     $('.registeredTnt').click(function(){
         var studentId = (this).id;
         var tnt = (this).checked;
@@ -41,9 +41,11 @@ $(function() {
         $.ajax({
         	type:'POST',
         	data:data,
-        	url:'approve_student',
+        	url: baseUrl + 'admin/users/approve_student',
         	success : function(data) {
-               alert('process done');
+                if (data) {
+                    alert('process done');
+                }
         	}
 
         });
@@ -56,9 +58,11 @@ $(function() {
         $.ajax({
         	type:'POST',
         	data:data,
-        	url:'approve_student',
+        	url:baseUrl + 'admin/users/approve_student',
         	success : function(data) {
-               alert('process done');
+               if (data) {
+                    alert('process done');
+               }
         	}
 
         });
