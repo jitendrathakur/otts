@@ -231,6 +231,15 @@ CREATE TABLE IF NOT EXISTS `boards` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `advertises` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` varchar(255) DEFAULT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
 --
 -- Table structure for table `courses`
 --
