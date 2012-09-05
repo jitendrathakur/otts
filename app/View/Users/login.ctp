@@ -1,11 +1,7 @@
-<?php /*echo $this->Html->link('New Student Registation', 
-array('action' => 'signup'), 
-array('class' => 'btn btn-info btn-large pull-right')
-);*/?>
 <div>
 <?php echo $this->Session->flash('auth'); ?>
 </div>
-<div class="">
+<div  class="span6">
 	<h2>Login</h2>
 	<?php echo $this->Form->create('User', $twitterBootstrapCreateOptions);?>
 		   
@@ -15,13 +11,26 @@ array('class' => 'btn btn-info btn-large pull-right')
 	?>
 	<?php echo $this->Form->submit('Login', $twitterBootstrapEndOptions);?>	
 	<?php echo $this->Form->end();?>	
+  <div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item"><img alt="" src="/otts/img/edu2.jpg" class="carousel"></div>
+      <div class="item"><img alt="" src="/otts/img/edu1.jpg" class="carousel"></div>
+      <div class="item"><img alt="" src="/otts/img/edu3.jpg" class="carousel"></div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+  
 </div>
 
 
-<div class="">
+<div class="span6">
   <?php  
   $twitterBootstrapCreateOptions['class'] = 'form-horizontal well';
-  echo $this->Form->create('User', $twitterBootstrapCreateOptions, array('url' => array('controller' => 'users', 'action' => 'signup')));
+  $twitterBootstrapCreateOptions['action'] = 'signup';
+  echo $this->Form->create('User', $twitterBootstrapCreateOptions);
   ?>
     <h2><?php echo __('Sign Up'); ?></h2>
     <?php
@@ -83,14 +92,4 @@ array('class' => 'btn btn-info btn-large pull-right')
     ?> 
 </div>
 
-    <div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-    <div class="active item"><img alt="" src="/otts/files/images/pug-bug-photomanipulation.jpg" class=""></div>
-    <div class="item"><img alt="" src="/otts/files/images/pug-bug-photomanipulation.jpg" class=""></div>
-    <div class="item"><img alt="" src="/otts/files/images/pug-bug-photomanipulation.jpg" class=""></div>
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>
+ 

@@ -15,3 +15,8 @@ body {
 
 	margin-right:0;
 }
+
+.carousel {
+    height:250px;
+    width:400px;
+}
