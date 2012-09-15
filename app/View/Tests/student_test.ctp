@@ -106,7 +106,7 @@
     <p><strong>Question <?php echo $this->Session->read('Test.current_question') + 1;?>: </strong><?php echo __($question['Question']['title']); ?></p>
     <?php foreach ($question['Image'] as $image) {        
         if ($image['image_of'] == 'question') {
-            echo $this->Html->image('/files/images/'.$image['filename'], array('class' => 'thumbnail'));
+            echo $this->Html->image('/files/images/'.$image['filename'], array('class' => 'thumbnail', 'style' => 'margin-left:0px'));
         } 
     } ?>
     <?php echo $this->Form->create('TestUser'); ?>
@@ -115,11 +115,20 @@
         <p>
             <?php
             echo $this->Form->input('question_id', array('type' => 'hidden', 'value' => $question['Question']['id']));
-            echo $i. ' ';
-            echo $this->Form->input('Option.'.$i, array('type' => 'checkbox', 'div' => false, 'label' => array('div' => false, 'text' => $question['Question']['option_'.$i]))); 
+            //echo $i. ' ';
+            echo $this->Form->input(
+                'Option.'.$i, 
+                array(
+                    'type' => 'checkbox', 
+                    'div' => false, 
+                    'label' => array('div' => false, 'text' => false),
+                    'before' => "<br /> $i) ",
+                    'between' => " " . $question['Question']['option_'.$i]
+                )
+            ); 
             foreach ($question['Image'] as $image) {
                 if ($image['image_of'] == 'option_'.$i) {
-                    echo $this->Html->image('/files/images/'.$image['filename'], array('class' => 'thumbnail'));
+                    echo $this->Html->image('/files/images/'.$image['filename'], array('class' => 'thumbnail', 'style' => 'margin-left:0px'));
                 } 
             } 
                 //echo __($i .') '. $question['Question']['option_'.$i]);                 

@@ -19,7 +19,7 @@
 		    'type' => 'date',
 		    'dateFormat' => 'DMY',
 		    'minYear' => date('Y') - 70,
-		    'maxYear' => date('Y') - 18,
+		    'maxYear' => date('Y'),
 		    'class' => 'span1',
 		));
 

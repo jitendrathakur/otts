@@ -41,9 +41,7 @@
                 <?php
 //                debug($advertise);
                 foreach ($advertise as $Advertise):
-                ?> <a href="<?php echo $Advertise['Advertise']['link'] ?>"><img class="thumbnail" src="<?php echo $this->webroot.'files/images/'.$Advertise['Image']['filename']; ?>" alt="" />
-              <img src="<?php echo $this->webroot; ?>img/foo.gif" .../ 
-                  <?php //echo $this->Html->image(WWW'/files/images/'.$Advertise['Image']['filename'], '', array('class' => 'thumbnail')); ?>
+                ?> <a href="<?php echo $Advertise['Advertise']['link'] ?>"><img class="thumbnail" src="<?php echo $this->webroot.'files/images/'.$Advertise['Image']['filename']; ?>" alt="" />              
                 </a><?php
                 
                 endforeach; ?>
