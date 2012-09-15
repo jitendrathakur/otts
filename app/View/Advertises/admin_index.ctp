@@ -1,7 +1,7 @@
 <div class="Advertises index">
 	<h2><?php echo __('Advertises');?></h2>
 	<div class="row">		
-		<div class="span10">
+		<div class="span9">
 			<table class="table table-striped table-condensed table-bordered">
 				<tr>
 						<th><?php echo $this->Paginator->sort('id');?></th>						

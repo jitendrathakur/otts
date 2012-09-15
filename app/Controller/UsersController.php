@@ -31,19 +31,20 @@ class UsersController extends AppController
         }
         // User logs in successfully
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                $groupInfo = $this->getParentGroup((int)$this->Auth->user('id'));        
-                if (!empty($groupInfo['parent_group'])) {
-                  $this->Session->write('Auth.User.userGroup', $groupInfo['parent_group']);
-                } 
-                //this function returns redirect path by user's role
-                $this->getRedirectPath();
-                //$this->Session->setFlash(__('Logged in successfully.'));
-                $this->redirect($this->Auth->redirect());
-            } else {
-                $this->Session->setFlash(__('Invalid username or password, try again!'), 'error');
-            }
+          if ($this->Auth->login()) {
+              $groupInfo = $this->getParentGroup((int)$this->Auth->user('id'));        
+              if (!empty($groupInfo['parent_group'])) {
+                $this->Session->write('Auth.User.userGroup', $groupInfo['parent_group']);
+              } 
+              //this function returns redirect path by user's role
+              $this->getRedirectPath();
+              //$this->Session->setFlash(__('Logged in successfully.'));
+              $this->redirect($this->Auth->redirect());
+          } else {
+              $this->Session->setFlash(__('Invalid username or password, try again!'), 'error');
+          }
         }
+        $this->layout = 'cms_home';
     }//end login()
 
 
@@ -54,13 +55,13 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        if ($this->Auth->logout()) {
-            $this->Session->setFlash(__('Logged out successfully.'), 'success');
-        }
-        $this->Session->destroy();
-        $this->Session->delete('Auth');
-       
-        $this->redirect($this->Auth->logoutRedirect);
+      if ($this->Auth->logout()) {
+          $this->Session->setFlash(__('Logged out successfully.'), 'success');
+      }
+      $this->Session->destroy();
+      $this->Session->delete('Auth');
+     
+      $this->redirect($this->Auth->logoutRedirect);
     }//end logout()
 
 

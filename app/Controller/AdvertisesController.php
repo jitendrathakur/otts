@@ -25,6 +25,7 @@ class AdvertisesController extends AppController
     {
         if ($this->request->is('post')) {
             $this->Advertise->create();
+      
             if ($this->Advertise->save($this->request->data)) {
                 $this->Advertise->Image->Behaviors->attach(
                     'ImageUpload',
@@ -36,15 +37,16 @@ class AdvertisesController extends AppController
                 $this->request->data['Image'] = array_merge(
                     $this->request->data['Image'],
                     array('advertise_id' => $this->Advertise->id)
-                );                
-                if ($this->Advertise->Image->save($this->request->data)) {
+                );    
+                        
+                if ($this->Advertise->Image->save($this->request->data['Image'])) {
 
                     $this->Session->setFlash(
                         __('The Advertise has been saved'),
                         'success'                    
                     );
                 } else {
-                    $this->Advertise->delete();
+                   // $this->Advertise->delete();
                     $this->Session->setFlash(__('The Advertise image could not be saved. Please, try again.'), 'error');
                 }
                 
