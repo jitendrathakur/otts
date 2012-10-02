@@ -99,7 +99,7 @@ class TestsController extends AppController
                 'list',
                 array(
                  //'contain'    => array('Subject'),
-                 'conditions' => array('Question.subject_id' => $this->request->data['Test']['subject_id']),
+                 'conditions' => array('Question.topic_id' => $this->request->data['Test']['topic_id']),
                  'order'      => 'RAND()',
                  'limit'      => $this->request->data['Test']['number_of_questions'],
                 )
@@ -126,32 +126,21 @@ class TestsController extends AppController
             }
         }
 
-        //$candidates = $this->Test->Candidate->find('list');
-         $subjects = $this->Question->Subject->find(
+        $contain = array('Subject.name');
+
+        $topics = $this->Question->Topic->find(
             'all',
-            array(
-                //'fields' => array('id', 'name'),
-                'contain' => array(
-                    'Course' => array(
-                        'fields' => array('name'),
-                        'Board' => array(
-                            'fields' => array('name'),
-                            'order' => 'Board.name',
-                        )
-                    )
-                ),
-               // 'group' => 'Course.name',                
-            )
-        );       
-        
-        $subjectList = array();
-        foreach ($subjects as $subject){
-            $subjectList[$subject['Course']['Board']['name'].' : '.$subject['Course']['name']][$subject['Subject']['id']] = $subject['Subject']['name'];
-        } 
+            compact('contain')
+        );
 
-        $subjects = $subjectList;
+        $topicsList = array();
+        foreach ($topics as $topic){
+            $topicsList[$topic['Subject']['name']][$topic['Topic']['id']] = $topic['Topic']['name'];
+        }
 
-        $this->set(compact('candidates', 'subjects'));
+        $topics = $topicsList;      
+        //debug($topicsList);
+        $this->set(compact('topics'));
     }//end add()
 
 

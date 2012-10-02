@@ -21,10 +21,10 @@ class Test extends AppModel
                                            'allowEmpty' => false,
                                            'message'    => 'Candidate must be selected.',
                                           ),
-                        'subject_id'   => array(
+                        'topic_id'   => array(
                                            'rule'       => array('numeric'),
                                            'allowEmpty' => false,
-                                           'message'    => 'Subject must be selected.',
+                                           'message'    => 'Topic must be selected.',
                                           ),
                         'code'         => array('rule' => array('notempty')),
                        );
@@ -36,7 +36,7 @@ class Test extends AppModel
      * @var array
      */
     public $belongsTo = array(
-                         'Subject',
+                         'Topic',
                         );
 
 

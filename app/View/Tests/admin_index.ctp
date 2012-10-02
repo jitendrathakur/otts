@@ -3,7 +3,7 @@
 	<table class="table table-striped table-condensed table-bordered">
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
-		<th><?php echo $this->Paginator->sort('Subject');?></th>
+		<th><?php echo $this->Paginator->sort('Topic');?></th>
 		<th><?php echo $this->Paginator->sort('Name');?></th>
 		<th><?php echo $this->Paginator->sort('code');?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
@@ -12,7 +12,7 @@
 	foreach ($tests as $test): ?>
 	<tr>		
 		<td><?php echo h($test['Test']['id']); ?>&nbsp;</td>
-		<td><?php echo h($test['Subject']['name']); ?>&nbsp;</td>
+		<td><?php echo h($test['Topic']['name']); ?>&nbsp;</td>
 		<td><?php echo !empty($test['Test']['name']) ? $test['Test']['name'] : 'No Name';  ?>&nbsp;</td>
 		<td><?php echo h($test['Test']['code']); ?>&nbsp;</td>
 		<td class="actions">						

@@ -4,7 +4,7 @@
 	<?php
 	    echo $this->Form->input('name');
 		echo $this->Form->input('number_of_questions');
-        echo $this->Form->input('subject_id', array('empty' => true));
+        echo $this->Form->input('topic_id', array('empty' => true));
 		//echo $this->Form->input('code');
 	?>
 	</fieldset>

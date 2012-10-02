@@ -4,6 +4,12 @@
     <?php
     echo $this->Form->input('id', array('type' => 'hidden'));
 		echo $this->Form->input('topic_id', array('empty' => true));
+
+
+    $mode = Configure::read('mode');
+
+    echo $this->Form->input('mode', array('options' => $mode));
+    
 		echo $this->Form->input(
         'title',
          array(
