@@ -74,12 +74,12 @@ class User extends AppModel
       'unique' => array(
         'rule' => array('isUnique'),    
       ),
-    ),
+    ),/*
     'mobile' => array(
       'notempty' => array(
         'rule' => array('notempty'),      
       ),
-    ),    
+    ),*/
 
   );  
 
