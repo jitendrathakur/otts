@@ -5,7 +5,7 @@
 			<table class="table table-striped table-condensed table-bordered">
 				<tr>
 						<th><?php echo $this->Paginator->sort('id');?></th>
-						<th><?php echo $this->Paginator->sort('subject_id');?></th>
+						<th><?php echo $this->Paginator->sort('topic_id');?></th>
 						<th><?php echo $this->Paginator->sort('name');?></th>									
 						<th class="actions"><?php echo __('Actions');?></th>
 				</tr>
@@ -14,7 +14,7 @@
 				<tr>
 					<td><?php echo h($tutorial['Tutorial']['id']); ?>&nbsp;</td>
 					<td>
-						<?php echo $this->Html->link($tutorial['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $tutorial['Subject']['id'])); ?>
+						<?php echo $this->Html->link($tutorial['Topic']['name'], array('controller' => 'topics', 'action' => 'view', $tutorial['Topic']['id'])); ?>
 					</td>
 					<td>
 						<strong><?php echo h($tutorial['Tutorial']['name']); ?></strong><br />
@@ -30,32 +30,7 @@
 				</table>
 				<?php echo $this->element('paging'); ?>
 		</div>
-		<div class="span2">
-			<h3>Select Subject</h3>
-			<ul class="">
-				<li><?php 
-					echo $this->Html->link(
-						'All',
-						array('action' => 'index')
-					);
-				?></li>
-				<?php
-                
-				 foreach ($subjects as  $key => $subject) : ?>
-				 <?php echo $key; 
-					foreach($subject as $subjectId => $subjectName) {
-				    ?>
-					<li><?php 
-						echo $this->Html->link(
-							$subjectName,
-							array('action' => 'index', $subjectId)
-						);
-					?></li>
-				    <?php
-					}
-					 endforeach; ?>
-			</ul>
-		</div>
+		
 	</div>
 
 

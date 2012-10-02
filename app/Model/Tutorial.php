@@ -13,12 +13,12 @@ class Tutorial extends AppModel
                         'title'      => array('rule' => array('notempty')),
                        );
 
-    /**
+     /**
      * This variable contains list of this models's belongsTo associations.
      *
      * @var array
      */
-    public $belongsTo = array('Subject');
+    public $belongsTo = array('Topic');
 
     public $hasMany = array('Image');
 

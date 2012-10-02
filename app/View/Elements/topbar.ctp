@@ -2,35 +2,9 @@
       <div class="navbar-inner">
         <div class="container">
             <?php
-                echo $this->Html->link(__('OTTS'), Router::url('/', true), array('class' => 'brand'));
+                echo $this->Html->link(__('My Exam Preparation'), Router::url('/', true), array('class' => 'brand'));
                 $adminMenu = array(
-                    array(
-                        'title'    => 'Boards',
-                        'dropdown' => array(
-                            array(
-                                'title'   => 'Board',
-                                'url'     => array('controller' => 'boards', 'action' => 'index', 'admin' => true),
-                            ),
-                            array(
-                                'title'   => 'Add',
-                                'url'     => array('controller' => 'boards', 'action' => 'add', 'admin' => true),
-                            ),
-                        ),
-                    ),
-                    array(
-                        'title'    => 'Courses',
-                        'dropdown' => array(
-                            array(
-                                'title'   => 'Course',
-                                'url'     => array('controller' => 'courses', 'action' => 'index', 'admin' => true),
-                            ),
-                            array(
-                                'title'   => 'Add',
-                                'url'     => array('controller' => 'courses', 'action' => 'add', 'admin' => true),
-                            ),
-                        ),
-                    ),
-                    array(
+                     array(
                         'title'    => 'Subject',
                         'dropdown' => array(
                             array(
@@ -42,7 +16,20 @@
                                 'url'     => array('controller' => 'subjects', 'action' => 'add', 'admin' => true),
                             ),
                         ),
-                    ),                    
+                    ),
+                    array(
+                        'title'    => 'Topics',
+                        'dropdown' => array(
+                            array(
+                                'title'   => 'Topics',
+                                'url'     => array('controller' => 'topics', 'action' => 'index', 'admin' => true),
+                            ),
+                            array(
+                                'title'   => 'Add',
+                                'url'     => array('controller' => 'topics', 'action' => 'add', 'admin' => true),
+                            ),
+                        ),
+                    ),
                     array(
                         'title'    => 'Question',
                         'dropdown' => array(

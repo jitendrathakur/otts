@@ -3,7 +3,7 @@
 		<h2><?php echo __('Edit Question'); ?></h2>
     <?php
     echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('subject_id', array('empty' => true));
+		echo $this->Form->input('topic_id', array('empty' => true));
 		echo $this->Form->input(
         'title',
          array(
@@ -17,7 +17,7 @@
     );
     foreach ($images as $image) {
         if ($image['Image']['image_of'] == 'question') {
-            echo $this->Html->image('/files/images/'.$image['Image']['filename'], array('class' => 'thumbnail'));
+            echo $this->Html->image(DS.'files'.DS.'images'.DS.$image['Image']['filename'], array('class' => 'thumbnail'));
         } 
     }
     echo $this->Form->error('answer', array('required' => 'Please select at least one correct answer'), array('class' => 'alert alert-error'));
@@ -47,7 +47,7 @@
        )."</span></div>";
 
        echo $this->Form->input("option_$j", array(
-         //'type'  => 'text',
+         'type'  => 'text',
          'class' => 'input-xlarge',
          'div'     => $divClass,
          'between' => '<div class="controls"><div class="input-append">',
@@ -62,7 +62,7 @@
        );
        foreach ($images as $image) {
           if ($image['Image']['image_of'] == "option_$j") {
-              echo $this->Html->image('/files/images/'.$image['Image']['filename'], array('class' => 'thumbnail'));
+              echo $this->Html->image(DS.'files'.DS.'images'.DS.$image['Image']['filename'], array('class' => 'thumbnail'));
           } 
        }
      }
