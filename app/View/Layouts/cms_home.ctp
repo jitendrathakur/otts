@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <?php echo $this->Html->charset(); ?>
-    <title><?php echo __("{$title_for_layout} | OTTS"); ?></title>
+    <title><?php echo __("{$title_for_layout} | My Exam Preparation"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">

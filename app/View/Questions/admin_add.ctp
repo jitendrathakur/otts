@@ -2,7 +2,7 @@
     <h2><?php echo __('Add Question'); ?></h2>
     <?php
         echo $this->Form->create('Question', $twitterBootstrapCreateOptions);
-        echo $this->Form->input('subject_id', array('empty' => true));
+        echo $this->Form->input('topic_id', array('empty' => true));
         
         echo $this->Form->input(
             'title',
@@ -41,7 +41,7 @@
         )."</span></div>";       
 
         echo $this->Form->input("option_$j", array(
-         //'type'  => 'text',
+         'type'  => 'text',
          'class' => 'input-xlarge',
          'div'     => $divClass,
          'between' => '<div class="controls"><div class="input-append">',

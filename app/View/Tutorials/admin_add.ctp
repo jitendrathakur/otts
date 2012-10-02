@@ -8,7 +8,7 @@
     <h2><?php echo __('Add Tutorial'); ?></h2>
     <?php
         echo $this->Form->create('Tutorial', $twitterBootstrapCreateOptions);
-        echo $this->Form->input('subject_id', array('empty' => true));       
+        echo $this->Form->input('topic_id', array('empty' => true));       
         echo $this->Form->input('name');       
         echo $this->Form->input('content', array('type' => 'textarea', 'style' => 'width:600px; height:300px;'));       
        
