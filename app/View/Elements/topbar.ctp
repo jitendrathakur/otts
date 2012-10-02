@@ -43,7 +43,7 @@
                             ),
                         ),
                     ),
-                    array(
+                    /*array(
                         'title'    => 'Tutorial',
                         'dropdown' => array(
                             array(
@@ -55,7 +55,7 @@
                                 'url'     => array('controller' => 'tutorials', 'action' => 'add', 'admin' => true),
                             ),
                         ),
-                    ),
+                    ),*/
                     array(
                         'title'    => 'Tests',
                         'dropdown' => array(
