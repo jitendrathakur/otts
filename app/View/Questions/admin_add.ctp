@@ -3,6 +3,10 @@
     <?php
         echo $this->Form->create('Question', $twitterBootstrapCreateOptions);
         echo $this->Form->input('topic_id', array('empty' => true));
+
+        $mode = Configure::read('mode');
+
+        echo $this->Form->input('mode', array('options' => $mode));
         
         echo $this->Form->input(
             'title',
