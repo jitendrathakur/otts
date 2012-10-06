@@ -1,8 +1,8 @@
 <?php
 class QuestionsController extends AppController
 {
-
-
+    
+    
     /**
      * This action method is used to display paginated list of questions.
      *
@@ -216,6 +216,64 @@ class QuestionsController extends AppController
             $this->Session->setFlash('Image could not be saved.', 'error');
         }
         $this->redirect($this->referer());
+    }
+
+    public function admin_upload() {
+        if ($this->request->is('post')) {
+
+            if ($file = @fopen($this->request->data['Image']['filename']['tmp_name'], 'r')) {
+
+                $subjectId = $this->Question->Topic->field('subject_id', array('Topic.id' => $this->request->data['Question']['topic_id']));
+                                         
+                // Row counter
+                $r = $p = 0; 
+                // read each data row in the file
+                while ($row = fgetcsv($file)) {
+                    
+                    if ($r !== 0) {
+                        
+                        $data = array();
+                        $data['topic_id'] = $this->request->data['Question']['topic_id'];
+                        $data['subject_id'] = $subjectId;
+                        $data['mode'] = $this->request->data['Question']['mode'];
+                        $data['title'] = $row['0'];
+                        $data['option_1'] = $row['1'];
+                        $data['option_2'] = $row['2'];
+                        $data['option_3'] = $row['3'];
+                        $data['option_4'] = $row['4'];                   
+                        $data['answer'] = explode(',', $row['5']);                    
+                        $this->Question->create();
+                        if ($this->Question->save($data)) {
+                          $p++;
+                        }
+                    }
+                    
+                    $r++;
+                }//while
+                // close the file
+                fclose($file); 
+
+                $this->Session->setFlash(__("The $p question has been saved"), 'success');           
+                $this->redirect(array('action' => 'index'));
+            }         
+        }
+
+        $contain = array('Subject.name');
+
+        $topics = $this->Question->Topic->find(
+            'all',
+            compact('contain')
+        );
+
+        $topicsList = array();
+        foreach ($topics as $topic){
+            $topicsList[$topic['Subject']['name']][$topic['Topic']['id']] = $topic['Topic']['name'];
+        }
+
+        $topics = $topicsList;      
+        //debug($topicsList);
+        $this->set(compact('topics'));
+
     }
 
 

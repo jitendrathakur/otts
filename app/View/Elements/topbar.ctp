@@ -41,6 +41,10 @@
                                 'title'   => 'Add',
                                 'url'     => array('controller' => 'questions', 'action' => 'add', 'admin' => true),
                             ),
+                            array(
+                                'title'   => 'Upload',
+                                'url'     => array('controller' => 'questions', 'action' => 'upload', 'admin' => true),
+                            ),
                         ),
                     ),
                     /*array(

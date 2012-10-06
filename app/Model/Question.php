@@ -30,7 +30,7 @@ class Question extends AppModel
         //this code is used to validate topic if user do not select any topic     
         //this code is used to validate if answer option are empty        
         
-        if ($this->data['Question']['answer']) {           
+        if (isset($this->data['Question']['answer']) && !empty($this->data['Question']['answer'])) {           
             $num = 0;
             foreach ($this->data['Question']['answer'] as $option) {       
                 if (empty($option)) {
