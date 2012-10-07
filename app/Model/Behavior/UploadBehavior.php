@@ -1,46 +1,7 @@
 <?php
 
-/**
- * Behavior to handle file uploading.
- *
- * PHP version 5
- *
- * @category Behavior
- * @package  UploadBehavior
- * @author   Amit Badkas <amit@sanisoft.com>
- * @license  http://nagpurbirds.org Private
- * @link     http://nagpurbirds.org
- */
-
-/**
- * Upload behavior class
- *
- * @category Behavior
- * @package  UploadBehavior
- * @author   Amit Badkas <amit@sanisoft.com>
- * @license  http://nagpurbirds.org Private
- * @link     http://nagpurbirds.org
- */
 class UploadBehavior extends ModelBehavior
 {
-
-    /**
-     * This class variable contains list of default upload settings.
-     *
-     * Settings:
-     * 'allowedMime' => '*', //array('image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'),
-     * 'allowedExt' => '*', //array('jpg','jpeg','gif','png'),
-     * 'baseDir' : The constaants DS, APP, WWW_ROOT can be used if wrapped in {} To use a variable,
-     *             wrap in {} if the var is not defined during setup it is assumed to be the name
-     *             of a field in the submitted data
-     * 'dirFormat' : //'dirFormat' => '{$class}{DS}{$foreign_id}', // include {$baseDir} to have absolute
-     *                paths include {$baseDir} to have absolute paths
-     * 'fileFormat' : include {$dir} to store the dir & filename in one field.
-     *                'fileFormat' => '{$filename}_{$description}', // include {$dir} to store the dir &
-     *                filename in one field
-     *
-     * @var array
-     */
     var $__defaultSettings = array(
                               'enabled'           => true,
                               'fileField'         => 'filename',

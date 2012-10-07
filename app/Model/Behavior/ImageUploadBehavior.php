@@ -1,30 +1,10 @@
 <?php
 
-/**
- * Behavior to handle image resizing.
- *
- * PHP version 5
- *
- * @category Behavior
- * @package  Behavior
- * @author   Rakesh Tembhurne <rakesh@sanisoft.com>
- * @license  http://nagpurbirds.org Private
- * @link     http://nagpurbirds.org
- */
 // Include upload behavior's class file
 if (!class_exists('UploadBehavior')) {
     App::import('Behavior', 'Upload');
 }
 
-/**
- * Image Upload behavior class class.
- *
- * @category Behavior
- * @package  Behavior
- * @author   Rakesh Tembhurne <rakesh@sanisoft.com>
- * @license  http://nagpurbirds.org Private
- * @link     http://nagpurbirds.org
- */
 class ImageUploadBehavior extends UploadBehavior
 {
 
