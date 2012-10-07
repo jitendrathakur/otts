@@ -40,7 +40,7 @@ class CandidatesTestCase extends CakeTestCase {
 		parent::setUp();
 
 		$this->Candidates = new TestCandidates();
-		$this->->constructClasses();
+		$this->constructClasses();
 	}
 
 /**

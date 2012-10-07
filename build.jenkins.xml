@@ -2,7 +2,7 @@
 
 <project name="CakePHP" default="build">
  <target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdoc,cake,phpcb"/>
+   depends="prepare,lint,phploc,pdepend,phpcs-ci,phpcpd,phpdoc,cake,phpcb"/>
 
  <target name="build-parallel"
    depends="prepare,lint,tools-parallel,cake,phpcb"/>
@@ -42,7 +42,7 @@
   <apply executable="php" failonerror="true">
    <arg value="-l" />
 
-   <fileset dir="${basedir}/lib/Cake">
+   <fileset dir="${basedir}/app">
     <include name="**/*.php" />
     <modified />
    </fileset>
@@ -53,36 +53,36 @@
  <target name="phploc" description="Measure project size using PHPLOC">
   <exec executable="phploc">
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Test" />
+   <arg value="${basedir}/app/Test" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Templates" />
+   <arg value="${basedir}/app/Templates" />
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg path="${basedir}/app" />
   </exec>
  </target>
 
  <target name="pdepend"
          description="Calculate software metrics using PHP_Depend">
   <exec executable="pdepend">
-   <arg value="--ignore=${basedir}/lib/Cake/Test,${basedir}/lib/Cake/Console/Templates" />
+   <arg value="--ignore=${basedir}/app/Test,${basedir}/app/Console/Templates" />
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg path="${basedir}/app" />
   </exec>
  </target>
 
  <target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="phpmd">
-   <arg path="${basedir}/lib/Cake" />
+   <arg path="${basedir}/app" />
    <arg value="text" />
    <arg value="codesize,design,naming,unusedcode" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Test" />
+   <arg value="${basedir}/app/Test" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Console/Templates" />
+   <arg value="${basedir}/app/Console/Templates" />
   </exec>
  </target>
 
@@ -95,9 +95,9 @@
    <arg value="--reportfile" />
    <arg value="${basedir}/build/logs/pmd.xml" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Test" />
+   <arg value="${basedir}/app/Test" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Console/Templates" />
+   <arg value="${basedir}/app/Console/Templates" />
   </exec>
  </target>
 
@@ -106,8 +106,8 @@
   <exec executable="phpcs">
    <arg value="--standard=CakePHP" />
    <arg value="--encoding=utf-8" />
-   <arg value="--ignore=${basedir}/lib/Cake/Console/Templates,${basedir}/lib/Cake/Test,*.txt,*.bat,*js" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg value="--ignore=${basedir}/app/Console/Templates,${basedir}/app/Test,*.txt,*.bat,*js" />
+   <arg path="${basedir}/app" />
   </exec>
  </target>
 
@@ -118,8 +118,8 @@
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
    <arg value="--standard=CakePHP" />
    <arg value="--encoding=utf-8" />
-   <arg value="--ignore=${basedir}/lib/Cake/Console/Templates,${basedir}/lib/Cake/Test,*.txt,*.bat,*js" /> 
-   <arg path="${basedir}/lib/Cake" />
+   <arg value="--ignore=${basedir}/app/Console/Templates,${basedir}/app/Test,*.txt,*.bat,*js" /> 
+   <arg path="${basedir}/app" />
   </exec>
  </target>
 
@@ -128,10 +128,10 @@
    <arg value="--log-pmd" />
    <arg value="${basedir}/build/logs/pmd-cpd.xml" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Test" />
+   <arg value="${basedir}/app/Test" />
    <arg value="--exclude" />
-   <arg value="${basedir}/lib/Cake/Console/Templates" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg value="${basedir}/app/Console/Templates" />
+   <arg path="${basedir}/app" />
   </exec>
  </target>
 
@@ -139,7 +139,7 @@
          description="Generate API documentation using PHPDocumentor">
   <exec executable="phpdoc">
    <arg value="--directory" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg path="${basedir}/app" />
    <arg value="--target" />
    <arg path="${basedir}/build/api" />
    <arg value="--ignore" />
@@ -168,7 +168,7 @@
    <arg value="--log" />
    <arg path="${basedir}/build/logs" />
    <arg value="--source" />
-   <arg path="${basedir}/lib/Cake" />
+   <arg path="${basedir}/app" />
    <arg value="--output" />
    <arg path="${basedir}/build/code-browser" />
    <arg value="-S" />
