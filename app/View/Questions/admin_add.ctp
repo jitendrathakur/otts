@@ -20,7 +20,7 @@
             )
         );		
 
-      echo $this->Form->error('answer', array('required' => 'Please select at least one correct answer'), array('class' => 'alert alert-error'));
+        echo $this->Form->error('answer', array('required' => 'Please select at least one correct answer'), array('class' => 'alert alert-error'));
     for($j = 1; $j <= 4; $j++) { ?>
     <?php
         $error = '';
@@ -42,7 +42,7 @@
                      'label' => false,
                      'between' => false,
                    )
-        )."</span></div>";       
+        )."</span></div>";
 
         echo $this->Form->input("option_$j", array(
          'type'  => 'text',

@@ -87,7 +87,6 @@ class TestsController extends AppController
     /**
      * This action method is used to add new test.
      *
-     * @return void
      */
     public function admin_add()
     {
@@ -98,20 +97,15 @@ class TestsController extends AppController
             $questions = $this->Question->find(
                 'list',
                 array(
-                 //'contain'    => array('Subject'),
                  'conditions' => array('Question.topic_id' => $this->request->data['Test']['topic_id']),
                  'order'      => 'RAND()',
                  'limit'      => $this->request->data['Test']['number_of_questions'],
+                 'fields'     => array('Question.id', 'Question.topic_id')
                 )
             );
-            //unset($this->request->data['Test']['number_of_questions']);
-
             // Modifies data to be saved as associated models.
-            //debug($this->request->data);exit;
             $modifiedRequestData = $this->Test->modifyTestData($this->request->data, $questions);
-            //debug($modifiedRequestData);
-            //debug($questions);exit;
-
+            
             // Saves associated data.
             $this->Test->create();
             if ($this->Test->saveAssociated($modifiedRequestData)) {
@@ -127,11 +121,7 @@ class TestsController extends AppController
         }
 
         $contain = array('Subject.name');
-
-        $topics = $this->Question->Topic->find(
-            'all',
-            compact('contain')
-        );
+        $topics  = $this->Question->Topic->find('all', compact('contain'));
 
         $topicsList = array();
         foreach ($topics as $topic){
@@ -139,7 +129,6 @@ class TestsController extends AppController
         }
 
         $topics = $topicsList;      
-        //debug($topicsList);
         $this->set(compact('topics'));
     }//end add()
 
@@ -541,13 +530,9 @@ class TestsController extends AppController
      *
      * @return void
      */
-    public function student_index($subjectId = null)
+    public function student_index()
     {   
-        if (empty($subjectId)) {
-            throw new NotFoundException(__('Invalid subject'));
-        }
-        $this->Test->recursive = 0;
-        $this->paginate = array('conditions' => array('Test.subject_id' => $subjectId));
+        $this->Test->recursive = 0;        
         $tests = $this->paginate();
         $this->set(compact('tests'));
     }//end index()

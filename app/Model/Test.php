@@ -75,16 +75,20 @@ class Test extends AppModel
     public function modifyTestData($formData, $questions)
     {
         $data = array();
+        
         // For each question adjusts data for saving.
-        foreach ($questions as $questionId => $que) {
+        foreach ($questions as $questionId => $topicId) {           
+
             $formData['TestQuestion'][] = array(
                                        'question_id' => $questionId,
-                                       'subject_id'  => $formData['Test']['subject_id'],
+                                       'topic_id'    => $topicId,
                                       );
         }
 
         // Adds unique code to data.
         $formData['Test']['code'] = $this->__randomAlphaNum(4);
+        unset($formData['Test']['topic_id']);
+
         return $formData;
     }//end modifyTestData()
     

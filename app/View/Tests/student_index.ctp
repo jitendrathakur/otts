@@ -2,14 +2,12 @@
 	<h2><?php echo __('Tests');?></h2>
 	<table class="table table-striped table-condensed table-bordered">
 	<tr>		
-		<th><?php echo $this->Paginator->sort('Subject');?></th>
 		<th><?php echo $this->Paginator->sort('Name');?></th>		
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 	foreach ($tests as $test): ?>
 	<tr>		
-		<td><?php echo h($test['Subject']['name']); ?>&nbsp;</td>
 		<td><?php echo !empty($test['Test']['name']) ? $test['Test']['name'] : 'No Name';  ?>&nbsp;</td>		
 		<td class="actions">
 			<?php echo $this->Html->link(__('Start Test'), array('controller' => 'tests', 'action' => 'test', $test['Test']['id'], 'student' => true)); ?>

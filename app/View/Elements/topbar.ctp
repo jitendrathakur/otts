@@ -90,7 +90,7 @@
                             ),
                         ),
                     ),
-                    array(
+                    /*array(
                         'title'    => 'Advertise',
                         'dropdown' => array(
                             array(
@@ -102,12 +102,12 @@
                                 'url'     => array('controller' => 'advertises', 'action' => 'add', 'admin' => true),
                             ),                           
                         ),
-                    ),
+                    ),*/
                 );
             $studentMenu = array(
                 array(
                     'title'   => 'Home',
-                    'url'     => array('controller' => 'users', 'action' =>'home', 'student' => true),
+                    'url'     => array('controller' => 'tests', 'action' =>'index', 'student' => true),
                 ),
             );
             $logInMenu = array(

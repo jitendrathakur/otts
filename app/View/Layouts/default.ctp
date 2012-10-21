@@ -34,17 +34,15 @@
           echo $this->Session->flash('auth');
           ?>
           <div class="row">
-            <div class="span9">
+            <div class="span12">
               <?php echo $content_for_layout; ?>
             </div>
-            <div class="span3">
-                <?php
-//                debug($advertise);
-                foreach ($advertise as $Advertise):
-                ?> <a href="<?php echo $Advertise['Advertise']['link'] ?>"><img class="thumbnail" src="<?php echo $this->webroot.'files/images/'.$Advertise['Image']['filename']; ?>" alt="" />              
-                </a><?php
-                
-                endforeach; ?>
+            <div class="span3 hide">
+                <?php  foreach ($advertise as $Advertise): ?>
+                    <a href="<?php echo $Advertise['Advertise']['link'] ?>">
+                        <img class="thumbnail" src="<?php echo $this->webroot.'files/images/'.$Advertise['Image']['filename']; ?>" alt="" />
+                    </a>
+                <?php endforeach; ?>
             </div>           
           </div>
                     
@@ -56,7 +54,7 @@
     <?php       
       echo $this->Html->scriptBlock('var baseUrl = "'.$this->Html->url('/').'";');
       echo $scripts_for_layout;
-      echo $this->element('sql_dump');
+      //echo $this->element('sql_dump');
     ?>
   </body>
 </html>
