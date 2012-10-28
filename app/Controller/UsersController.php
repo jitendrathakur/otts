@@ -129,22 +129,21 @@ class UsersController extends AppController
          
       if($this->request->is('post')) {  
         $options = array(
-          'to'          => 'jitendra.thakur2008@gmail.com',
-          'from'        => 'no-reply@otts.com',
+          'to'          => $this->request->data['User']['email'],
+          'from'        => 'mail@'.$_SERVER["HTTP_HOST"],
           'replyTo'     => null,
           'cc'          => array(),
           'bcc'         => array(),
           'subject'     => 'Account information',
-          'template'    => null,
-          'emailFormat' => 'html',
+          'template'    => 'signup',
+          'emailFormat' => 'both',
           'attachments' => array(),
-          'viewVars'    => null,
+          'viewVars'    => array('data' => $this->request->data['User']),
         );
-                //$this->_sendEmail($options);
-
+                
         $this->request->data['User']['group_id'] = Configure::read('studentGroupId');
         if($this->User->save($this->request->data)) {
-         
+          $this->_sendEmail($options);
           if ($this->Auth->login()) {         
             $groupInfo = $this->getParentGroup((int)$this->Auth->user('id'));        
             if (!empty($groupInfo['parent_group'])) {
