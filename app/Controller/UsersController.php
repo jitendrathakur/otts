@@ -44,7 +44,7 @@ class UsersController extends AppController
               $this->Session->setFlash(__('Invalid username or password, try again!'), 'error');
           }
         }
-        $this->layout = 'cms_home';
+        //$this->layout = 'cms_home';
     }//end login()
 
 

@@ -1,6 +1,5 @@
-<div>
+<div class="row-fluid">
 <?php echo $this->Session->flash('auth'); ?>
-</div>
 <div  class="span6">
 	<h2>Login</h2>
 	<?php echo $this->Form->create('User', $twitterBootstrapCreateOptions);?>
@@ -9,23 +8,9 @@
 	    echo $this->Form->input('username');
 	    echo $this->Form->input('password');
 	?>
-	<?php echo $this->Form->submit('Login', $twitterBootstrapEndOptions);?>	
-	<?php echo $this->Form->end();?>	
-  <div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-      <div class="active item"><img alt="" src="/otts/img/edu2.jpg" class="carousel"></div>
-      <div class="item"><img alt="" src="/otts/img/edu1.jpg" class="carousel"></div>
-      <div class="item"><img alt="" src="/otts/img/edu3.jpg" class="carousel"></div>
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  </div>
-  
+	<?php echo $this->Form->submit('Login', $twitterBootstrapEndOptions);?>
+	<?php echo $this->Form->end();?>	  
 </div>
-
-
 <div class="span6">
   <?php  
   $twitterBootstrapCreateOptions['class'] = 'form-horizontal well';
@@ -83,13 +68,11 @@
     ?>
     <div class="form-actions">
     <?php 
-    echo $this->Form->submit('Submit', array('class' => 'btn btn-primary', 'div' => false)).'&nbsp;&nbsp; ';        
-   
+    echo $this->Form->submit('Submit', array('class' => 'btn btn-primary', 'div' => false)).'&nbsp;&nbsp; ';   
     ?>
     </div>
     <?php
     echo $this->Form->end();
     ?> 
 </div>
-
- 
+</div>
